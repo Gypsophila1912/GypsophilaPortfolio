@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "motion/react";
 import { Award, ChevronDown, Wrench, Heart } from "lucide-react";
 import { useState } from "react";
@@ -5,10 +6,10 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../ui-custom/layout/collapsible";
-import { useTheme, getThemeClasses } from "../../contexts/ThemeContext";
+} from "../components/ui-custom/layout/collapsible";
+import { useTheme, getThemeClasses } from "../contexts/ThemeContext";
 
-export function Skills() {
+export default function Skills() {
   const { mode } = useTheme();
   const theme = getThemeClasses(mode);
 

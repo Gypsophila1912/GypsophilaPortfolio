@@ -1,14 +1,12 @@
+"use client";
+
 import { motion } from "motion/react";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
-import { ScreenType } from "../GameLayout";
+import Link from "next/link";
 import { useTheme, getThemeClasses } from "../../contexts/ThemeContext";
 
-interface ArticleDetailProps {
-  onNavigate: (screen: ScreenType) => void;
-}
-
 // MicroCMSから受け取る想定のデータ構造
-export function ArticleDetail({ onNavigate }: ArticleDetailProps) {
+export default function ArticleDetail({ params }: { params: { id: string } }) {
   const { mode } = useTheme();
   const theme = getThemeClasses(mode);
 
@@ -136,13 +134,13 @@ export function ArticleDetail({ onNavigate }: ArticleDetailProps) {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
       >
-        <button
-          onClick={() => onNavigate("articles")}
+        <Link
+          href="/articles"
           className={`flex items-center gap-2 ${theme.text} hover:opacity-80 transition-opacity`}
         >
           <ArrowLeft className="w-4 h-4" />
           <span>BACK TO ARTICLES</span>
-        </button>
+        </Link>
       </motion.div>
 
       {/* 記事ヘッダーセクション - 下からフェードインアニメーション */}

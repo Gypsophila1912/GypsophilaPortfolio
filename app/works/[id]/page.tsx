@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "motion/react";
 import {
   ArrowLeft,
@@ -9,21 +10,17 @@ import {
   Users,
   Palette,
 } from "lucide-react";
-import { ScreenType } from "../GameLayout";
+import Link from "next/link";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../ui-custom/layout/collapsible";
+} from "../../components/ui-custom/layout/collapsible";
 import { useState } from "react";
 import { useTheme, getThemeClasses } from "../../contexts/ThemeContext";
 
-interface WorkDetailProps {
-  onNavigate: (screen: ScreenType) => void;
-}
-
 // MicroCMSから受け取る想定のデータ構造
-export function WorkDetail({ onNavigate }: WorkDetailProps) {
+export default function WorkDetail({ params }: { params: { id: string } }) {
   const { mode } = useTheme();
   const theme = getThemeClasses(mode);
 
@@ -197,13 +194,13 @@ export function WorkDetail({ onNavigate }: WorkDetailProps) {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
       >
-        <button
-          onClick={() => onNavigate("works")}
+        <Link
+          href="/works"
           className={`flex items-center gap-2 ${theme.text} hover:opacity-80 transition-opacity`}
         >
           <ArrowLeft className="w-4 h-4" />
           <span>BACK TO WORKS</span>
-        </button>
+        </Link>
       </motion.div>
 
       {/* プロジェクトヘッダーセクション - 下からフェードインアニメーション */}
