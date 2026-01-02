@@ -1,19 +1,17 @@
+"use client";
+
 import { motion } from "motion/react";
 import { Calendar, Clock, Search, ChevronDown, Tag } from "lucide-react";
 import { useState, useMemo } from "react";
-import { ScreenType } from "../GameLayout";
+import Link from "next/link";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../ui-custom/layout/collapsible";
-import { useTheme, getThemeClasses } from "../../contexts/ThemeContext";
+} from "../components/ui-custom/layout/collapsible";
+import { useTheme, getThemeClasses } from "../contexts/ThemeContext";
 
-interface ArticlesProps {
-  onNavigate: (screen: ScreenType) => void;
-}
-
-export function Articles({ onNavigate }: ArticlesProps) {
+export default function Articles() {
   const { mode } = useTheme();
   const theme = getThemeClasses(mode);
 
@@ -321,73 +319,74 @@ export function Articles({ onNavigate }: ArticlesProps) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3 + index * 0.05 }}
               className={`group ${theme.bgCard} border ${theme.borderSecondary} hover:shadow-lg transition-all overflow-hidden cursor-pointer`}
-              onClick={() => onNavigate("article-detail")}
             >
-              {/* Image */}
-              <div className="relative overflow-hidden h-48 bg-gray-900">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
-                />
-                <div
-                  className={`absolute top-2 right-2 px-3 py-1 ${theme.bgInput} border ${theme.border} ${theme.text} text-xs flex items-center gap-1`}
-                >
-                  <Calendar className="w-3 h-3" />
-                  <span>{article.date}</span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-4 space-y-3">
-                <h2
-                  className={`text-xl ${theme.text} group-hover:opacity-80 transition-opacity line-clamp-2`}
-                >
-                  {article.title}
-                </h2>
-
-                <div
-                  className={`flex items-center gap-2 text-sm ${theme.textFaded}`}
-                >
-                  <Clock className="w-4 h-4" />
-                  <span>{article.readTime}</span>
-                </div>
-
-                <p
-                  className={`${theme.textSecondary} text-sm leading-relaxed line-clamp-3`}
-                >
-                  {article.excerpt}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {article.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`px-2 py-1 ${
-                        theme.bgInput
-                      } border text-xs flex items-center gap-1 ${
-                        selectedTags.includes(tag)
-                          ? `${theme.border} ${theme.text}`
-                          : `${theme.borderFaded} ${theme.textMuted}`
-                      }`}
-                    >
-                      <Tag className="w-3 h-3" />
-                      <span>{tag}</span>
-                    </span>
-                  ))}
-                </div>
-
-                {/* Read More */}
-                <div className="pt-2">
-                  <span
-                    className={`inline-flex items-center gap-2 ${theme.text} group-hover:opacity-80 transition-opacity text-sm`}
+              <Link href={`/articles/${article.id}`}>
+                {/* Image */}
+                <div className="relative overflow-hidden h-48 bg-gray-900">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                  />
+                  <div
+                    className={`absolute top-2 right-2 px-3 py-1 ${theme.bgInput} border ${theme.border} ${theme.text} text-xs flex items-center gap-1`}
                   >
-                    <span>READ MORE</span>
-                    <span>→</span>
-                  </span>
+                    <Calendar className="w-3 h-3" />
+                    <span>{article.date}</span>
+                  </div>
                 </div>
-              </div>
+
+                {/* Content */}
+                <div className="p-4 space-y-3">
+                  <h2
+                    className={`text-xl ${theme.text} group-hover:opacity-80 transition-opacity line-clamp-2`}
+                  >
+                    {article.title}
+                  </h2>
+
+                  <div
+                    className={`flex items-center gap-2 text-sm ${theme.textFaded}`}
+                  >
+                    <Clock className="w-4 h-4" />
+                    <span>{article.readTime}</span>
+                  </div>
+
+                  <p
+                    className={`${theme.textSecondary} text-sm leading-relaxed line-clamp-3`}
+                  >
+                    {article.excerpt}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {article.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`px-2 py-1 ${
+                          theme.bgInput
+                        } border text-xs flex items-center gap-1 ${
+                          selectedTags.includes(tag)
+                            ? `${theme.border} ${theme.text}`
+                            : `${theme.borderFaded} ${theme.textMuted}`
+                        }`}
+                      >
+                        <Tag className="w-3 h-3" />
+                        <span>{tag}</span>
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Read More */}
+                  <div className="pt-2">
+                    <span
+                      className={`inline-flex items-center gap-2 ${theme.text} group-hover:opacity-80 transition-opacity text-sm`}
+                    >
+                      <span>READ MORE</span>
+                      <span>→</span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
             </motion.article>
           ))}
         </motion.div>

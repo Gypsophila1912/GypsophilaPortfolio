@@ -1,43 +1,47 @@
-import { ScreenType } from "./GameLayout";
+"use client";
+
 import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Zap, Menu as MenuIcon, X, Sun, Moon } from "lucide-react";
 import { useTheme, getThemeClasses } from "../contexts/ThemeContext";
 
-interface MenuProps {
-  activeScreen: ScreenType;
-  onScreenChange: (screen: ScreenType) => void;
-}
-
 // メニュー項目の定義
 const menuItems: {
-  id: Exclude<ScreenType, "article-detail" | "work-detail">;
+  id: string;
   label: string;
   icon: string;
+  path: string;
 }[] = [
-  { id: "home", label: "HOME", icon: "◆" },
-  { id: "works", label: "WORKS", icon: "◈" },
-  { id: "articles", label: "ARTICLES", icon: "◉" },
-  { id: "career", label: "CAREER", icon: "⚔" },
-  { id: "skills", label: "SKILLS", icon: "★" },
+  { id: "home", label: "HOME", icon: "◆", path: "/" },
+  { id: "works", label: "WORKS", icon: "◈", path: "/works" },
+  { id: "articles", label: "ARTICLES", icon: "◉", path: "/articles" },
+  { id: "career", label: "CAREER", icon: "⚔", path: "/career" },
+  { id: "skills", label: "SKILLS", icon: "★", path: "/skills" },
 ];
 
-export function Menu({ activeScreen, onScreenChange }: MenuProps) {
+export function Menu() {
+  const router = useRouter();
+  const pathname = usePathname();
   const { mode, toggleMode } = useTheme();
   const theme = getThemeClasses(mode);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // モバイルメニューの開閉状態
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // article-detail、work-detailの時は親ページをアクティブに
-  const displayActiveScreen =
-    activeScreen === "article-detail"
-      ? "articles"
-      : activeScreen === "work-detail"
-      ? "works"
-      : activeScreen;
+  // pathnameから現在のアクティブ画面を判定
+  const getActiveScreen = () => {
+    if (pathname === "/") return "home";
+    if (pathname.startsWith("/works")) return "works";
+    if (pathname.startsWith("/articles")) return "articles";
+    if (pathname.startsWith("/career")) return "career";
+    if (pathname.startsWith("/skills")) return "skills";
+    return "home";
+  };
+
+  const activeScreen = getActiveScreen();
 
   // メニュー項目をクリックした時
-  const handleMenuClick = (screen: ScreenType) => {
-    onScreenChange(screen);
-    setIsMenuOpen(false); // モバイルメニューを閉じる
+  const handleMenuClick = (path: string) => {
+    router.push(path);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -49,7 +53,6 @@ export function Menu({ activeScreen, onScreenChange }: MenuProps) {
       } sticky top-0 z-50 transition-colors duration-300`}
     >
       <div className="container mx-auto px-4">
-        {/* 1段に統合したヘッダー */}
         <div className="flex items-center justify-between gap-4 py-3">
           {/* 左側: レベルとプレイヤー名 */}
           <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
@@ -69,11 +72,9 @@ export function Menu({ activeScreen, onScreenChange }: MenuProps) {
             {menuItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => handleMenuClick(item.id)}
+                onClick={() => handleMenuClick(item.path)}
                 className={`px-4 py-2 border-2 transition-all text-sm ${
-                  displayActiveScreen === item.id
-                    ? theme.btnActive
-                    : theme.btnInactive
+                  activeScreen === item.id ? theme.btnActive : theme.btnInactive
                 }`}
               >
                 <span className="flex items-center gap-2">
@@ -86,7 +87,6 @@ export function Menu({ activeScreen, onScreenChange }: MenuProps) {
 
           {/* 右側: ダークモードトグルとハンバーガーメニュー */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            {/* ダークモードトグル */}
             <button
               onClick={toggleMode}
               className={`p-2 border ${theme.border} ${theme.text} hover:${
@@ -104,7 +104,6 @@ export function Menu({ activeScreen, onScreenChange }: MenuProps) {
               )}
             </button>
 
-            {/* ハンバーガーメニューボタン（モバイルのみ・正方形） */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`md:hidden p-2 border-2 ${theme.border} ${theme.text} transition-all aspect-square`}
@@ -129,17 +128,15 @@ export function Menu({ activeScreen, onScreenChange }: MenuProps) {
             {menuItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => handleMenuClick(item.id)}
+                onClick={() => handleMenuClick(item.path)}
                 className={`px-4 py-3 border-2 transition-all text-left ${
-                  displayActiveScreen === item.id
-                    ? theme.btnActive
-                    : theme.btnInactive
+                  activeScreen === item.id ? theme.btnActive : theme.btnInactive
                 }`}
               >
                 <span className="flex items-center gap-2">
                   <span>{item.icon}</span>
                   <span>{item.label}</span>
-                  {displayActiveScreen === item.id && (
+                  {activeScreen === item.id && (
                     <span className="ml-auto text-xs">●</span>
                   )}
                 </span>

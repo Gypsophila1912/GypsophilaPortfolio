@@ -1,3 +1,6 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import {
   Search,
@@ -8,19 +11,15 @@ import {
   Palette,
 } from "lucide-react";
 import { useState, useMemo } from "react";
-import { ScreenType } from "../GameLayout";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../ui-custom/layout/collapsible";
-import { useTheme, getThemeClasses } from "../../contexts/ThemeContext";
+} from "../components/ui-custom/layout/collapsible";
+import { useTheme, getThemeClasses } from "../contexts/ThemeContext";
 
-interface WorksProps {
-  onNavigate: (screen: ScreenType) => void;
-}
-
-export function Works({ onNavigate }: WorksProps) {
+export default function Works() {
+  const router = useRouter();
   const { mode } = useTheme();
   const theme = getThemeClasses(mode);
 
@@ -29,6 +28,10 @@ export function Works({ onNavigate }: WorksProps) {
   const [typeFilter, setTypeFilter] = useState<
     "all" | "development" | "illustration"
   >("all");
+
+  const handleNavigate = (path: string) => {
+    router.push(path);
+  };
 
   const works = [
     {
@@ -375,7 +378,7 @@ export function Works({ onNavigate }: WorksProps) {
               {/* Image Container with hover effect */}
               <div
                 className="relative overflow-hidden h-48 bg-gray-900 cursor-pointer"
-                onClick={() => onNavigate("work-detail")}
+                onClick={() => handleNavigate(`/works/${work.id}`)}
               >
                 <img
                   src={work.image}
@@ -401,7 +404,7 @@ export function Works({ onNavigate }: WorksProps) {
 
               {/* Content */}
               <div
-                onClick={() => onNavigate("work-detail")}
+                onClick={() => handleNavigate(`/works/${work.id}`)}
                 className="p-4 space-y-3 cursor-pointer"
               >
                 <h3

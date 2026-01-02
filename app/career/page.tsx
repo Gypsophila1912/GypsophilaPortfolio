@@ -1,8 +1,9 @@
+"use client";
 import { motion } from "motion/react";
 import { Briefcase, GraduationCap } from "lucide-react";
-import { useTheme, getThemeClasses } from "../../contexts/ThemeContext";
+import { useTheme, getThemeClasses } from "../contexts/ThemeContext";
 
-export function Career() {
+export default function Career() {
   const { mode } = useTheme();
   const theme = getThemeClasses(mode);
 
