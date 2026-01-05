@@ -75,7 +75,7 @@ export default function Home() {
   const quickLinks = [
     {
       id: 1,
-      label: "Works",
+      label: "作品一覧",
       icon: ExternalLink,
       action: () => handleNavigate("/works"),
       color: "green",
@@ -84,22 +84,8 @@ export default function Home() {
       id: 2,
       label: "GitHub",
       icon: ExternalLink,
-      href: "https://github.com",
+      href: "https://github.com/Gypsophila1912",
       color: "blue",
-    },
-    {
-      id: 3,
-      label: "Resume (PDF)",
-      icon: FileText,
-      href: "#",
-      color: "purple",
-    },
-    {
-      id: 4,
-      label: "Contact",
-      icon: Mail,
-      href: "mailto:your.email@example.com",
-      color: "cyan",
     },
   ];
 
@@ -140,7 +126,7 @@ export default function Home() {
           <div
             className={`inline-block px-3 md:px-4 py-1 md:py-2 ${theme.bgButton} ${theme.textButton} border-2 ${theme.border}`}
           >
-            <span className="text-xs md:text-sm">★ MAIN QUEST ★</span>
+            <span className="text-xs md:text-sm">★ 自己紹介 ★</span>
           </div>
 
           {/* Profile Section with Icon and Name */}
@@ -166,24 +152,17 @@ export default function Home() {
                 className={`w-24 md:w-32 h-24 md:h-32 border-4 ${theme.border} ${theme.bgCard} overflow-hidden`}
               >
                 <img
-                  src="https://images.unsplash.com/photo-1751574979098-9e676675b0b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400"
+                  src="/images/icon.png"
                   alt="Profile Icon"
                   className="w-full h-full object-cover"
                 />
-              </div>
-
-              {/* Level Badge */}
-              <div
-                className={`absolute -bottom-2 -right-2 px-2 py-1 ${theme.bgButton} ${theme.textButton} border-2 ${theme.border} text-xs`}
-              >
-                LV.99
               </div>
             </div>
 
             {/* Name and Title */}
             <div className="text-left space-y-2 md:space-y-3">
               <h1 className={`text-2xl md:text-6xl ${theme.text} font-mono`}>
-                {">"} PLAYER_NAME
+                {">"} ぎぷそ-gypsophila
               </h1>
               <div className={`text-sm md:text-2xl ${theme.textSecondary}`}>
                 Developer × Illustrator
@@ -195,12 +174,10 @@ export default function Home() {
             className={`max-w-2xl mx-auto space-y-3 md:space-y-4 ${theme.textSecondary}`}
           >
             <p className={theme.textSecondary}>
-              ▸ Welcome to my portfolio game!
+              ▸ ようこそ！私のポートフォリオへ！
             </p>
             <p className={`text-sm ${theme.textMuted}`}>
-              ▸ I'm a creative developer who loves to build interactive
-              experiences and create digital art. Combining code and design to
-              make something unique.
+              ▸福岡工業大学情報工学科２年のぎぷそです。情報技術研究部(じょぎ)に所属しています。28卒としてエンジニア目指して、ハッカソンに出場したり個人開発を通して勉強しています！主にバックエンドに興味があります。趣味はゲーム実況をみることです。よろしくお願いします！
             </p>
           </div>
         </div>
@@ -219,7 +196,7 @@ export default function Home() {
               className={`text-lg md:text-xl ${theme.text} flex items-center justify-center gap-2`}
             >
               <span className={`inline-block w-2 h-2 ${theme.bgButton}`} />
-              <span>QUICK ACCESS</span>
+              <span>クイックアクセス</span>
               <span className={`inline-block w-2 h-2 ${theme.bgButton}`} />
             </h2>
             <p className={`text-xs md:text-sm ${theme.textMuted} mt-1 md:mt-2`}>
@@ -292,7 +269,7 @@ export default function Home() {
               <span
                 className={`inline-block w-2 md:w-3 h-2 md:h-3 ${theme.bgButton} animate-pulse`}
               />
-              <span>LATEST WORKS</span>
+              <span>最新の作品</span>
             </h2>
             <p className={`text-xs md:text-sm ${theme.textMuted} mt-1`}>
               Projects & Artworks
@@ -302,7 +279,7 @@ export default function Home() {
             onClick={() => handleNavigate("/works")}
             className={`text-xs md:text-sm ${theme.textMuted} cursor-pointer hover:${theme.text} transition-colors`}
           >
-            View All →
+            一覧へ →
           </button>
         </div>
 
@@ -374,7 +351,7 @@ export default function Home() {
               <span
                 className={`inline-block w-2 md:w-3 h-2 md:h-3 ${theme.bgButton} animate-pulse`}
               />
-              <span>RECENT ARTICLES</span>
+              <span>最近の記事</span>
             </h2>
             <p className={`text-xs md:text-sm ${theme.textMuted} mt-1`}>
               Event Reports & Blog Posts
@@ -384,7 +361,7 @@ export default function Home() {
             onClick={() => handleNavigate("/articles")}
             className={`text-xs md:text-sm ${theme.textMuted} cursor-pointer hover:${theme.text} transition-colors`}
           >
-            View All →
+            一覧へ →
           </button>
         </div>
 
