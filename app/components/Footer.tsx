@@ -8,9 +8,7 @@ export function Footer() {
   const bgColor = mode === "dark" ? "bg-black" : "bg-gray-100";
 
   const socialLinks = [
-    { name: "GitHub", icon: Github, url: "https://github.com" },
-    { name: "Twitter", icon: Twitter, url: "https://twitter.com" },
-    { name: "Contact", icon: Mail, url: "mailto:your.email@example.com" },
+    { name: "GitHub", icon: Github, url: "https://github.com/Gypsophila1912" },
   ];
 
   return (
@@ -40,7 +38,7 @@ export function Footer() {
           {/* Copyright */}
           <div className="text-center">
             <div className={`${theme.textMuted} text-xs font-mono`}>
-              © 2024 Portfolio Game. All rights reserved.
+              © 2026 Portfolio.
             </div>
           </div>
         </div>

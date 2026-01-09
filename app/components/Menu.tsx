@@ -63,7 +63,7 @@ export function Menu() {
             <div
               className={`px-2 py-1 ${theme.bgInput} border ${theme.borderFaded} ${theme.text} text-xs hidden sm:block`}
             >
-              PLAYER: YOUR_NAME
+              PLAYER: ぎぷそ
             </div>
           </div>
 
