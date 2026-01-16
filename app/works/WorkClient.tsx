@@ -107,16 +107,16 @@ export default function WorksClient({ works }: WorkContentProps) {
         <div
           className={`absolute -top-2 left-1/2 -translate-x-1/2 px-4 py-1 ${theme.btnActive} text-xs`}
         >
-          ★ WORKS ★
+          ★ 作品一覧 ★
         </div>
         <h1 className={`text-3xl md:text-5xl ${theme.text} pt-4`}>
-          {">"} PROJECTS & ARTWORKS
+          {">"} 開発・イラスト
         </h1>
         <p className={`text-sm ${theme.textMuted}`}>
-          Development projects and digital illustrations
+          開発した作品やイラストを掲載しています。
         </p>
         <div className={`text-sm ${theme.textFaded}`}>
-          Total: {displayWorks.length} | Showing: {filteredWorks.length}
+          合計: {displayWorks.length} | 表示: {filteredWorks.length}
         </div>
       </motion.div>
 
@@ -135,7 +135,7 @@ export default function WorksClient({ works }: WorkContentProps) {
             />
             <input
               type="text"
-              placeholder="Search works..."
+              placeholder="検索..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className={`w-full pl-10 pr-8 py-2 ${theme.bgInput} border ${theme.borderSecondary} ${theme.textNormal} placeholder-gray-500 focus:${theme.border} focus:outline-none font-mono text-sm`}
@@ -158,7 +158,7 @@ export default function WorksClient({ works }: WorkContentProps) {
                 typeFilter === "all" ? theme.btnActive : theme.btnInactive
               }`}
             >
-              ALL
+              すべて
             </button>
             <button
               onClick={() => setTypeFilter("development")}
@@ -169,7 +169,7 @@ export default function WorksClient({ works }: WorkContentProps) {
               }`}
             >
               <Code className="w-3 h-3" />
-              <span>DEV</span>
+              <span>開発</span>
             </button>
             <button
               onClick={() => setTypeFilter("illustration")}
@@ -180,7 +180,7 @@ export default function WorksClient({ works }: WorkContentProps) {
               }`}
             >
               <Palette className="w-3 h-3" />
-              <span>ART</span>
+              <span>イラスト</span>
             </button>
           </div>
         </div>
@@ -226,12 +226,12 @@ export default function WorksClient({ works }: WorkContentProps) {
                   {work.type === "development" ? (
                     <>
                       <Code className="w-3 h-3" />
-                      <span>DEV</span>
+                      <span>開発</span>
                     </>
                   ) : (
                     <>
                       <Palette className="w-3 h-3" />
-                      <span>ART</span>
+                      <span>イラスト</span>
                     </>
                   )}
                 </div>
@@ -276,7 +276,7 @@ export default function WorksClient({ works }: WorkContentProps) {
                         className={`flex-1 px-4 py-2 ${theme.bgInput} border ${theme.borderSecondary} ${theme.text} hover:${theme.btnActive} transition-all text-center text-sm flex items-center justify-center gap-2`}
                       >
                         <ExternalLink className="w-4 h-4" />
-                        <span>DEMO</span>
+                        <span>デモ</span>
                       </a>
                     )}
                     {work.links.github && (
@@ -288,7 +288,7 @@ export default function WorksClient({ works }: WorkContentProps) {
                         className={`flex-1 px-4 py-2 ${theme.bgInput} border ${theme.borderSecondary} ${theme.text} hover:${theme.btnActive} transition-all text-center text-sm flex items-center justify-center gap-2`}
                       >
                         <Github className="w-4 h-4" />
-                        <span>GITHUB</span>
+                        <span>GitHub</span>
                       </a>
                     )}
                     {work.links.topaz && (
@@ -300,7 +300,7 @@ export default function WorksClient({ works }: WorkContentProps) {
                         className={`flex-1 px-4 py-2 ${theme.bgInput} border ${theme.borderSecondary} ${theme.text} hover:${theme.btnActive} transition-all text-center text-sm flex items-center justify-center gap-2`}
                       >
                         <FileText className="w-4 h-4" />
-                        <span>TOPAZ</span>
+                        <span>Topa'z</span>
                       </a>
                     )}
                   </div>
@@ -315,7 +315,7 @@ export default function WorksClient({ works }: WorkContentProps) {
         >
           <div className={`text-6xl mb-4 ${theme.textFaded}`}>◇</div>
           <div className={`text-xl ${theme.textMuted}`}>
-            No matching works found
+            作品が見つかりませんでした。
           </div>
           <button
             onClick={() => {
@@ -325,7 +325,7 @@ export default function WorksClient({ works }: WorkContentProps) {
             }}
             className={`mt-4 px-6 py-2 border ${theme.btnActive} transition-all`}
           >
-            CLEAR FILTERS
+            すべて表示
           </button>
         </div>
       )}
