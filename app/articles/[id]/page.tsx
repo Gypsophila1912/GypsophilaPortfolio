@@ -2,12 +2,14 @@ import { getArticleDetail } from "@/lib/api/articles";
 import { notFound } from "next/navigation";
 import ArticleDetail from "./ArticleDetailClient";
 
-export default async function WorkDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const article = await getArticleDetail(params.id);
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function ArticleDetailPage({ params }: PageProps) {
+  const { id } = await params;
+
+  const article = await getArticleDetail(id);
 
   if (!article) {
     notFound();
@@ -17,20 +19,22 @@ export default async function WorkDetailPage({
 }
 
 // メタデータ設定
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const work = await getArticleDetail(params.id);
+export async function generateMetadata({ params }: PageProps) {
+  const { id } = await params;
 
-  if (!work) {
+  const article = await getArticleDetail(id);
+
+  if (!article) {
     return {
-      title: "Work Not Found",
+      title: "Article Not Found",
     };
   }
 
   return {
-    title: `${work.title} | ぎぷそのポートフォリオ`,
-    description: work.htmlContent.replace(/<[^>]*>/g, "").substring(0, 150),
+    title: `${article.title} | ぎぷそのポートフォリオ`,
+    description: article.htmlContent.replace(/<[^>]*>/g, "").substring(0, 150),
     openGraph: {
-      images: [work.mainImage.url],
+      images: [article.mainImage.url],
     },
   };
 }
