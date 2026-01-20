@@ -2,12 +2,14 @@ import { getWork } from "@/lib/api/works";
 import { notFound } from "next/navigation";
 import WorkDetail from "./WorkDetailClient";
 
-export default async function WorkDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const work = await getWork(params.id);
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function WorkDetailPage({ params }: PageProps) {
+  const { id } = await params;
+
+  const work = await getWork(id);
 
   if (!work) {
     notFound();
@@ -17,8 +19,10 @@ export default async function WorkDetailPage({
 }
 
 // メタデータ設定
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const work = await getWork(params.id);
+export async function generateMetadata({ params }: PageProps) {
+  const { id } = await params;
+
+  const work = await getWork(id);
 
   if (!work) {
     return {
