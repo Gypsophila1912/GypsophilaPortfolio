@@ -155,22 +155,24 @@ export default function Home({
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+          <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-2xl mx-auto">
             {quickLinks.map((link) =>
               link.action ? (
                 <button
                   key={link.id}
                   onClick={link.action}
-                  className={`group p-3 md:p-4 ${theme.bgContrast} border-2 ${
+                  className={`group p-4 md:p-6 ${theme.bgContrast} border-2 ${
                     theme.border
                   } ${
                     theme.borderHover
                   } transition-all text-center ${getColorClasses(link.color)}`}
                 >
                   <link.icon
-                    className={`w-5 md:w-6 h-5 md:h-6 mx-auto mb-1 md:mb-2 ${theme.text}`}
+                    className={`w-6 md:w-8 h-6 md:h-8 mx-auto mb-2 md:mb-3 ${theme.text}`}
                   />
-                  <div className={`text-xs md:text-sm ${theme.text}`}>
+                  <div
+                    className={`text-sm md:text-base ${theme.text} font-medium`}
+                  >
                     {link.label}
                   </div>
                 </button>
@@ -184,20 +186,22 @@ export default function Home({
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className={`group p-3 md:p-4 ${theme.bgContrast} border-2 ${
+                  className={`group p-4 md:p-6 ${theme.bgContrast} border-2 ${
                     theme.border
                   } ${
                     theme.borderHover
                   } transition-all text-center ${getColorClasses(link.color)}`}
                 >
                   <link.icon
-                    className={`w-5 md:w-6 h-5 md:h-6 mx-auto mb-1 md:mb-2 ${theme.text}`}
+                    className={`w-6 md:w-8 h-6 md:h-8 mx-auto mb-2 md:mb-3 ${theme.text}`}
                   />
-                  <div className={`text-xs md:text-sm ${theme.text}`}>
+                  <div
+                    className={`text-sm md:text-base ${theme.text} font-medium`}
+                  >
                     {link.label}
                   </div>
                 </a>
-              )
+              ),
             )}
           </div>
         </div>
