@@ -12,11 +12,11 @@ const menuItems: {
   icon: string;
   path: string;
 }[] = [
-  { id: "home", label: "HOME", icon: "◆", path: "/" },
-  { id: "works", label: "WORKS", icon: "◈", path: "/works" },
-  { id: "articles", label: "ARTICLES", icon: "◉", path: "/articles" },
-  { id: "career", label: "CAREER", icon: "⚔", path: "/career" },
-  { id: "skills", label: "SKILLS", icon: "★", path: "/skills" },
+  { id: "home", label: "ホーム", icon: "◆", path: "/" },
+  { id: "works", label: "作品", icon: "◈", path: "/works" },
+  { id: "articles", label: "記事", icon: "◉", path: "/articles" },
+  { id: "career", label: "経歴", icon: "⚔", path: "/career" },
+  { id: "skills", label: "趣味・スキル", icon: "★", path: "/skills" },
 ];
 
 export function Menu() {
@@ -56,10 +56,6 @@ export function Menu() {
         <div className="flex items-center justify-between gap-4 py-3">
           {/* 左側: レベルとプレイヤー名 */}
           <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-            <div className="flex items-center gap-1">
-              <Zap className="w-3 h-3 text-yellow-400" />
-              <span className="text-yellow-400 text-xs">LV.99</span>
-            </div>
             <div
               className={`px-2 py-1 ${theme.bgInput} border ${theme.borderFaded} ${theme.text} text-xs hidden sm:block`}
             >
