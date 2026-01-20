@@ -4,7 +4,7 @@ import type { Career, MicroCMSListResponse } from "../types";
 export const getCareersList = async (limit?: number): Promise<Career[]> => {
   try {
     const response = await client.get<MicroCMSListResponse<Career>>({
-      endpoint: "careers",
+      endpoint: "career",
       queries: {
         limit: limit || 100,
         orders: "-date",
